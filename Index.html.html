@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>청원구 재난정보 지도(카카오 지도)</title>
+  <style>
+    #map {
+      width: 100%;
+      height: 500px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>청원구 재난정보 지도(카카오 지도)</h2>
+<div id="map"></div>
+
+<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=a103b2ec4ae35a508696bd61dabc0d65"></script>
+
+<script>
+  var mapContainer = document.getElementById('map'),
+      mapOption = {
+         center: new kakao.maps.LatLng(36.6515, 127.4868),
+         level: 6
+      };
+
+  var map = new kakao.maps.Map(mapContainer, mapOption);
+
+  var locations = [
+    {
+      name: "홍수 위험지역 A",
+      lat: 36.6666,
+      lng: 127.4833,
+      image: "https://i.imgur.com/W4pP6aA.jpg",
+      desc: "하천 인근 지역입니다. 침수 위험이 있습니다."
+    },
+    {
+      name: "산사태 위험지역 B",
+      lat: 36.6450,
+      lng: 127.4890,
+      image: "https://i.imgur.com/Jx6KJyx.jpg",
+      desc: "경사지 주변, 토사 유출 위험이 있습니다."
+    },
+    {
+      name: "화재 발생지역 C",
+      lat: 36.6385,
+      lng: 127.4802,
+      image: "https://i.imgur.com/wt7fhHi.jpg",
+      desc: "공장 화재 발생. 접근을 자제해주세요."
+    }
+  ];
+
+  locations.forEach(function(loc) {
+    var marker = new kakao.maps.Marker({
+      map: map,
+      position: new kakao.maps.LatLng(loc.lat, loc.lng)
+    });
+
+    var infowindow = new kakao.maps.InfoWindow({
+      content: `
+        <div style="
+          padding:12px;
+          background:#fff;
+          border:2px solid #E53935;
+          border-radius:10px;
+          font-family:'맑은 고딕', sans-serif;
+          font-size:14px;
+          color:#333;
+          box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+          width: 250px;
+        ">
+          <img src="${loc.image}" alt="재난 이미지" style="width:100%; height:auto; border-radius:8px; margin-bottom:8px;">
+          <strong>${loc.name}</strong><br>
+          <span style="font-size:13px;">${loc.desc}</span>
+        </div>
+      `
+    });
+
+    var isOpen = false;
+
+    kakao.maps.event.addListener(marker, 'click', function() {
+      if (isOpen) {
+        infowindow.close();
+        isOpen = false;
+      } else {
+        infowindow.open(map, marker);
+        isOpen = true;
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
