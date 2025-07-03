@@ -23,7 +23,7 @@
 
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=a103b2ec4ae35a508696bd61dabc0d65"></script>
 
-<script
+<script>
   var mapContainer = document.getElementById('map'),
       mapOption = {
         center: new kakao.maps.LatLng(36.6953, 127.4834), // 외평문화생활관(청원구중앙)
@@ -31,7 +31,7 @@
       };
   var map = new kakao.maps.Map(mapContainer, mapOption);
 
-    // ✅ 현재 위치 표시
+    // 현재 위치 표시
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       var lat = position.coords.latitude;
