@@ -2,11 +2,17 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>청원구 재난정보 지도(카카오 지도)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>청원구 재난재해 지도</title>
   <style>
     #map {
       width: 100%;
-      height: 500px;
+      height: 400px;
+    }
+    @media (max-width: 600px) {
+      #map {
+        height: 300px;
+      }
     }
   </style>
 </head>
@@ -18,14 +24,14 @@
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=a103b2ec4ae35a508696bd61dabc0d65"></script>
 
 <script>
-  var mapContainer = document.getElementById('map'),
-      mapOption = {
-         center: new kakao.maps.LatLng(36.6515, 127.4868),
-         level: 6
-      };
-
-  var map = new kakao.maps.Map(mapContainer, mapOption);
-
+  <script>
+    var mapContainer = document.getElementById('map'),
+        mapOption = {
+          center: new kakao.maps.LatLng(37.5665, 126.9780),
+          level: 3
+        };
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+  
   var locations = [
     {
       name: "청원구청",
