@@ -55,24 +55,24 @@
     }
   ];
 
-locations.forEach(function(loc) {
-  var marker = new kakao.maps.Marker({
-    map: map,
-    position: new kakao.maps.LatLng(loc.lat, loc.lng)
-  });
+  locations.forEach(function(loc) {
+    var marker = new kakao.maps.Marker({
+      map: map,
+      position: new kakao.maps.LatLng(loc.lat, loc.lng)
+    });
 
-  var infowindow = new kakao.maps.InfoWindow({
-    content: `
-      <div style="
-        padding:12px;
-        background:#fff;
-        border:2px solid #E53935;
-        border-radius:10px;
-        font-family:'맑은 고딕', sans-serif;
-        font-size:14px;
-        color:#333;
-        box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-        width: 250px;
+    var infowindow = new kakao.maps.InfoWindow({
+      content: `
+        <div style="
+          padding:12px;
+          background:#fff;
+          border:2px solid #E53935;
+          border-radius:10px;
+          font-family:'맑은 고딕', sans-serif;
+          font-size:14px;
+          color:#333;
+          box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+          width: 250px;
           <img src="${loc.image}" alt="재난 이미지" style="width:100%; height:auto; border-radius:8px; margin-bottom:8px;">
         <strong>${loc.name}</strong><br>
         <span style="font-size:13px;">${loc.desc}</span>
@@ -80,26 +80,27 @@ locations.forEach(function(loc) {
     `
   });
 
-  var isOpen = false;
+    var isOpen = false;
 
-  // 데스크톱 마우스 오버 이벤트
-  kakao.maps.event.addListener(marker, 'mouseover', function() {
-    infowindow.open(map, marker);
-  });
-
-  // 데스크톱 마우스 아웃 이벤트
-  kakao.maps.event.addListener(marker, 'mouseout', function() {
-    infowindow.close();
-  });
-
-  // 모바일 터치용 클릭 이벤트 (토글)
-  kakao.maps.event.addListener(marker, 'click', function() {
-    if (isOpen) {
-      infowindow.close();
-      isOpen = false;
-    } else {
+    kakao.maps.event.addListener(marker, 'mouseover', function() {
       infowindow.open(map, marker);
-      isOpen = true;
-    }
+    });
+
+    kakao.maps.event.addListener(marker, 'mouseout', function() {
+      infowindow.close();
+    });
+
+    kakao.maps.event.addListener(marker, 'click', function() {
+      if (isOpen) {
+        infowindow.close();
+        isOpen = false;
+      } else {
+        infowindow.open(map, marker);
+        isOpen = true;
+      }
+    });
   });
-});
+</script>
+
+</body>
+</html>
