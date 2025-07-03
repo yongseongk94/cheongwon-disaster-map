@@ -81,9 +81,17 @@
       `
     });
 
-   // 마커 클릭 시 해당 인포윈도우 열기
+   // 마커 클릭 시 해당 인포윈도우 열고 닫기
+   var isOpen = false;
+
     kakao.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(map, marker);
+      if (isOpen) {
+        infowindow.close();
+        isOpen = false;
+      } else {
+        infowindow.open(map, marker);
+        isOpen = true;
+      }
     });
   });
 </script>
