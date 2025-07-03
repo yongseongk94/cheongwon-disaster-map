@@ -81,17 +81,14 @@
       `
     });
 
-   // 마커 클릭 시 해당 인포윈도우 열고 닫기
-   var isOpen = false;
+    // 마커에 mouseover 이벤트 등록 → 인포윈도우 열기
+    kakao.maps.event.addListener(marker, 'mouseover', function() {
+      infowindow.open(map, marker);
+    });
 
-    kakao.maps.event.addListener(marker, 'click', function() {
-      if (isOpen) {
-        infowindow.close();
-        isOpen = false;
-      } else {
-        infowindow.open(map, marker);
-        isOpen = true;
-      }
+    // 마커에 mouseout 이벤트 등록 → 인포윈도우 닫기
+    kakao.maps.event.addListener(marker, 'mouseout', function() {
+      infowindow.close();
     });
   });
 </script>
