@@ -11,7 +11,7 @@
     }
     @media (max-width: 600px) {
       #map {
-        height: 600px;
+        height: 550px;
       }
     }
   </style>
@@ -61,7 +61,7 @@
       position: new kakao.maps.LatLng(loc.lat, loc.lng)
     });
 
-    var infowindow = new kakao.maps.InfoWindow({
+     var infowindow = new kakao.maps.InfoWindow({
       content: `
         <div style="
           padding:12px;
@@ -73,11 +73,12 @@
           color:#333;
           box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
           width: 250px;
+        ">
           <img src="${loc.image}" alt="재난 이미지" style="width:100%; height:auto; border-radius:8px; margin-bottom:8px;">
-        <strong>${loc.name}</strong><br>
-        <span style="font-size:13px;">${loc.desc}</span>
-      </div>
-    `
+          <strong>${loc.name}</strong><br>
+          <span style="font-size:13px;">${loc.desc}</span>
+        </div>
+      `
   });
 
     var isOpen = false;
