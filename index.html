@@ -30,32 +30,6 @@
         level: 8
       };
   var map = new kakao.maps.Map(mapContainer, mapOption);
-
-    // 현재 위치 표시
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var lat = position.coords.latitude;
-      var lng = position.coords.longitude;
-      var currentPos = new kakao.maps.LatLng(lat, lng);
-
-      // 지도 중심 이동
-      map.setCenter(currentPos);
-
-      // 현재 위치 마커
-      var userMarker = new kakao.maps.Marker({
-        position: currentPos,
-        map: map
-      });
-
-      // 인포윈도우
-      var userInfo = new kakao.maps.InfoWindow({
-        content: '<div style="padding:6px; font-size:13px;">📍 현재 위치</div>'
-      });
-      userInfo.open(map, userMarker);
-    });
-  } else {
-    alert("GPS를 지원하지 않는 브라우저입니다.");
-  }
   
   var locations = [
     {
